@@ -1,0 +1,10 @@
+function dateIsValid(date) {
+    return (
+        Object.prototype.toString.call(new Date(date)) === '[object Date]' && !isNaN(new Date(date))
+    );
+}
+
+if (new Date(payload.From) > new Date(payload.To))
+  throw {  code : CONSTANTS.HTTP_STATUS_CODE.EXPECTATION_FAILED,
+      message : 'From date ' + payload.From + ' should not be greater than To date ' + payload.To + '.'     
+} 
