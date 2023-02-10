@@ -1,0 +1,23 @@
+Count Array
+
+var data = [
+  "COMPLETED",
+  "PENDING",
+  "CONFIRMED",
+  "DECLINED",
+  "ONGOING",
+  "DECLINED",
+  "COMPLETED",
+  "DECLINED",
+  "COMPLETED"
+]
+
+var statusCounts = data.reduce((counts,statuses) => {
+  if (statuses === "ONGOING") { counts['ongoing']++; } 
+  else if (statuses === "DECLINED") { counts['declined']++; } 
+  else if (statuses === "COMPLETED") { counts['completed']++; }
+  counts['total']++; 
+  return counts;
+}, { ongoing: 0, declined: 0, completed: 0, total: 0 });
+
+console.log(statusCounts)
