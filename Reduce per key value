@@ -1,0 +1,13 @@
+var developers = 
+[{ name: "Joe", age: 23, overallLevel: "high" }, 
+  { name: "Sue", age: 28, overallLevel: "advanced" }, 
+  { name: "Jon", age: 32, overallLevel: "high" }, 
+  { name: "Bob", age: 24, overallLevel: "high" }, 
+  { name: "Bob", age: 20, overallLevel: "advanced" }
+];
+  var  overallLevel = developers.reduce(function (r, a) {
+        r[a.overallLevel] = (r[a.overallLevel] || 0) + 1;
+        return r;
+    }, {});
+
+console.log(overallLevel);
