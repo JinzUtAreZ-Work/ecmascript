@@ -56,3 +56,14 @@ const superiorArray = subordinates.reduce((grouped, person) => {
 },{})
 
 console.log(superiorArray);
+// iterate per superior subordinates
+Object.values(superiorArray).forEach(val => 
+    //console.log(val)
+    // val.reduce((current, acc) => {
+    //     console.log(acc,)
+    // })
+    val.map(id => {
+        console.log(val,id)
+    })
+);
+
