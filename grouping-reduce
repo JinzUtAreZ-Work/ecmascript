@@ -67,3 +67,10 @@ Object.values(superiorArray).forEach(val =>
     })
 );
 
+Object.keys(superiorArray).forEach(key => 
+    //console.log(superiorArray[key])  
+    superiorArray[key].reduce((cur, acc) => {
+        console.log(acc)
+    }, {})    
+)
+
