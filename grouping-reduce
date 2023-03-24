@@ -1,0 +1,58 @@
+const subordinates = [
+    {
+        "SAPEmpNum": "254160n",
+        "SAPManager": "254160",
+        "LoginName": "spssa",
+        "FullName": "Share Point Server System Admin",
+        "HasChild": 0
+    },
+    {
+        "SAPEmpNum": "259973",
+        "SAPManager": "254160",
+        "LoginName": "jsvjaecov",
+        "FullName": "Jaecov S. Vasquez",
+        "HasChild": 1
+    },
+    {
+        "SAPEmpNum": "252358",
+        "SAPManager": "254160",
+        "LoginName": "opexrf",
+        "FullName": "ANNA ANGELA VALENCIA",
+        "HasChild": 1
+    },
+    {
+        "SAPEmpNum": "254160",
+        "SAPManager": "254160",
+        "LoginName": "opexmg",
+        "FullName": null,
+        "HasChild": 1
+    },
+    {
+        "SAPEmpNum": "252351",
+        "SAPManager": "252358",
+        "LoginName": "what",
+        "FullName": "SAMPLE 1",
+        "HasChild": 2
+    },
+    {
+        "SAPEmpNum": "252352",
+        "SAPManager": "252358",
+        "LoginName": "the",
+        "FullName": "SAMPLE 2",
+        "HasChild": 2
+    },
+]
+
+
+const superiorArray = subordinates.reduce((grouped, person) => {
+    const manager = person.SAPManager
+    
+    if(grouped[manager] == null) 
+        grouped[manager] = []
+
+        grouped[manager].push(person.SAPEmpNum)
+        console.log(grouped) 
+    return grouped
+},{})
+
+console.log(superiorArray);
