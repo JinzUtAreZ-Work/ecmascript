@@ -1,0 +1,138 @@
+const subordinates = [
+    {
+        "SAPEmpNum": "254160n",
+        "SAPManager": "254160",
+        "LoginName": "spssa",
+        "FullName": "Share Point Server System Admin",
+        "HasChild": 0
+    },
+    {
+        "SAPEmpNum": "259973",
+        "SAPManager": "254160",
+        "LoginName": "jsvjaecov",
+        "FullName": "Jaecov S. Vasquez",
+        "HasChild": 1
+    },
+    {
+        "SAPEmpNum": "252358",
+        "SAPManager": "254160",
+        "LoginName": "opexrf",
+        "FullName": "ANNA ANGELA VALENCIA",
+        "HasChild": 1
+    },
+    {
+        "SAPEmpNum": "254160",
+        "SAPManager": "254160",
+        "LoginName": "opexmg",
+        "FullName": null,
+        "HasChild": 1
+    }
+]
+
+const responseSubordinates = [
+    [],
+    [
+        {
+            "SAPEmpNum": "260094",
+            "SAPManager": "259973",
+            "LoginName": "cddichristian",
+            "FullName": "Christian Dave D. Iba��ez",
+            "HasChild": 0
+        }
+    ],
+    [
+        {
+            "SAPEmpNum": "211105",
+            "SAPManager": "252358",
+            "LoginName": "opexmg",
+            "FullName": "UAT 43 WT 1020",
+            "HasChild": 1
+        },
+        {
+            "SAPEmpNum": "200042",
+            "SAPManager": "252358",
+            "LoginName": "opexex",
+            "FullName": "UAT 42 WT 1020",
+            "HasChild": 0
+        }
+    ],
+    [
+        {
+            "SAPEmpNum": "254160n",
+            "SAPManager": "254160",
+            "LoginName": "spssa",
+            "FullName": "Share Point Server System Admin",
+            "HasChild": 0
+        },
+        {
+            "SAPEmpNum": "259973",
+            "SAPManager": "254160",
+            "LoginName": "jsvjaecov",
+            "FullName": "Jaecov S. Vasquez",
+            "HasChild": 1
+        },
+        {
+            "SAPEmpNum": "252358",
+            "SAPManager": "254160",
+            "LoginName": "opexrf",
+            "FullName": "ANNA ANGELA VALENCIA",
+            "HasChild": 1
+        },
+        {
+            "SAPEmpNum": "254160",
+            "SAPManager": "254160",
+            "LoginName": "opexmg",
+            "FullName": null,
+            "HasChild": 1
+        }
+    ]
+]
+
+// subordinates.reduce((curr, acc, index) => {
+//     console.log(acc, index)
+// }, {})
+
+//console.log(subordinates)
+
+function getGroupedSubordinates(subordinates) {
+
+    return subordinates.reduce((grouped, person) => { // possible multiple superiors
+        var manager = person.SAPManager
+        
+        if(grouped[manager] == null) grouped[manager] = [] 
+        
+        if(person.SAPEmpNum !== manager) { // remove first 2 zeros
+            //console.log(parseInt(person.SAPEmpNum),parseInt(manager))
+            grouped[manager].push({ isSubordinate: true, empSapId: person.SAPEmpNum})
+        }
+        else{
+            grouped[manager].push({ isSubordinate: false, empSapId: person.SAPEmpNum })
+        } 
+
+        return grouped
+    },{})
+}
+
+var grouped = getGroupedSubordinates(subordinates)
+//console.log("grouped 1",grouped)
+
+var merged;
+
+responseSubordinates.reduce((curr, acc, index) => {
+    if(acc[0]){
+         var checkSubs = subordinates.some(sub => sub.SAPEmpNum === acc[0].SAPManager)
+         if(checkSubs){
+             console.log(acc, index)
+             var grouped2 = getGroupedSubordinates(acc)
+             //grouped.push(grouped2)
+             if(index === 0) {
+                merged = Object.assign({}, grouped, grouped2)
+             }
+             merged = Object.assign({}, merged, grouped2)
+             //console.log("subgrouped", grouped2)
+         }
+    }
+   
+}, {})
+
+console.log(merged)
