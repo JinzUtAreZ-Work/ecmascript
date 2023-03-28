@@ -136,3 +136,21 @@ responseSubordinates.reduce((curr, acc, index) => {
 }, {})
 
 console.log(merged)
+
+
+// check if array of an array is empty
+
+let isEmpty = a => Array.isArray(a) && a.every(isEmpty);
+
+//
+
+let zz = [
+    [
+        []
+    ],
+    [],
+    [[[[[[]]]]]]
+]
+
+
+console.log(isEmpty(zz))
