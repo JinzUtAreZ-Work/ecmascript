@@ -1,0 +1,112 @@
+const resEmpData = [
+    {
+        "sapEmpNum": "260094",
+        "fullname": "",
+        "empSubGroup": "",
+        "empStatus": ""
+    },
+    {
+        "sapEmpNum": "211105",
+        "fullname": "QA 05 COE",
+        "empSubGroup": "Rank and File",
+        "empStatus": "Active"
+    },
+    {
+        "sapEmpNum": "200042",
+        "fullname": "WT 1020 UAT 42",
+        "empSubGroup": "Cabin Crew",
+        "empStatus": "Active"
+    },
+    {
+        "sapEmpNum": "254160n",
+        "fullname": "LADORES JR DANILO R",
+        "empSubGroup": "Manager",
+        "empStatus": "Active"
+    },
+    {
+        "sapEmpNum": "259973",
+        "fullname": "",
+        "empSubGroup": "",
+        "empStatus": ""
+    },
+    {
+        "sapEmpNum": "252358",
+        "fullname": "VALENCIA ANNA ANGELA S",
+        "empSubGroup": "Assistant Manager",
+        "empStatus": "Active"
+    },
+    {
+        "sapEmpNum": "254160",
+        "fullname": "LADORES JR DANILO R",
+        "empSubGroup": "Manager",
+        "empStatus": "Active"
+    }
+]
+
+const merged = {
+    "259973": [
+        {
+            "isSubordinate": true,
+            "empSapId": "260094"
+        }
+    ],
+    "252358": [
+        {
+            "isSubordinate": true,
+            "empSapId": "211105"
+        },
+        {
+            "isSubordinate": true,
+            "empSapId": "200042"
+        }
+    ],
+    "254160": [
+        {
+            "isSubordinate": true,
+            "empSapId": "254160n"
+        },
+        {
+            "isSubordinate": true,
+            "empSapId": "259973"
+        },
+        {
+            "isSubordinate": true,
+            "empSapId": "252358"
+        },
+        {
+            "isSubordinate": false,
+            "empSapId": "254160"
+        }
+    ],
+    "2541601": [
+    ]
+}
+
+
+
+var newVal = Object.keys(merged).reduce((acc, val)=>{
+    var empName = resEmpData.find((emp) => {
+        return val === emp.sapEmpNum
+    })
+    //console.log(empName)
+    var subordinatesDetails = [];
+    Object.keys(merged).forEach(key => 
+        merged[key].map((employee) => {
+            if(key === val){
+                resEmpData.filter((sub) => {
+                    //console.log(sub)
+                    if (sub.sapEmpNum === employee.empSapId ){
+                        subordinatesDetails.push({ subordinateId: sub.sapEmpNum, subordinateName: sub.fullname })
+                    }
+                })
+            }
+            //console.log(val, key, employee)
+        }, {})    
+    )
+        //console.log(subordinatesDetails)
+
+    empName && acc.push({superiorId: val, superiorName: empName.fullname, subordinates: subordinatesDetails  }); 
+    return acc;
+}, []);
+
+console.log(newVal)
