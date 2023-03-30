@@ -1,0 +1,48 @@
+const retVal = [
+        {
+            "superiorId": "259973",
+            "superiorName": "",
+            "subordinates": [
+                {
+                    "subordinateId": "260094",
+                    "subordinateName": ""
+                }
+            ]
+        },
+        {
+            "superiorId": "252358",
+            "superiorName": "VALENCIA ANNA ANGELA S",
+            "subordinates": [
+                {
+                    "subordinateId": "211105",
+                    "subordinateName": "QA 05 COE"
+                },
+                {
+                    "subordinateId": "200042",
+                    "subordinateName": "WT 1020 UAT 42"
+                }
+            ]
+        },
+        {
+            "superiorId": "254160",
+            "superiorName": "LADORES JR DANILO R",
+            "subordinates": [
+                {
+                    "subordinateId": "254160n",
+                    "subordinateName": "LADORES JR DANILO R"
+                },
+                {
+                    "subordinateId": "259973",
+                    "subordinateName": ""
+                },
+                {
+                    "subordinateId": "252358",
+                    "subordinateName": "VALENCIA ANNA ANGELA S"
+                },
+                {
+                    "subordinateId": "254160",
+                    "subordinateName": "LADORES JR DANILO R"
+                }
+            ]
+        }
+]
