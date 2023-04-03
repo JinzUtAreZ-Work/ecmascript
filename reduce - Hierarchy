@@ -1,0 +1,114 @@
+const filterHMOenroll = [
+    {
+        "HierarchyPosition": 2,
+        "DependentNumber": "2111059201",
+        "FirstName": "Juan",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Father",
+        "Gender": "Male",
+        "CivilStatus": "Married",
+        "BirthDate": "1956/05/01"
+    },
+    {
+        "HierarchyPosition": 2,
+        "DependentNumber": "2111059302",
+        "FirstName": "Juana",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Mother",
+        "Gender": "Female",
+        "CivilStatus": "Married",
+        "BirthDate": "1959/05/01"
+    },
+    {
+        "HierarchyPosition": 3,
+        "DependentNumber": "2111059901",
+        "FirstName": "HALF SIBLING",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Half sibling",
+        "Gender": "Female",
+        "CivilStatus": "Single",
+        "BirthDate": "2001/04/03"
+    }
+]
+
+const dependents = [
+   
+    {
+        "HierarchyPosition": 2,
+        "DependentNumber": "2111059201",
+        "FirstName": "FATHER",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Father",
+        "Gender": "Male",
+        "CivilStatus": "Married",
+        "BirthDate": "1956/05/01",
+        "SubType": null,
+        "MaximumAge": 0,
+        "IsSpecialCase": false
+    },
+    //  {
+    //     "HierarchyPosition": 3,
+    //     "DependentNumber": "2111059901",
+    //     "FirstName": "HALF SIBLING",
+    //     "MiddleName": "",
+    //     "LastName": "COE",
+    //     "Relationship": "Half Sibling",
+    //     "Gender": "Female",
+    //     "CivilStatus": "Single",
+    //     "BirthDate": "4/3/2001",
+    //     "SubType": null,
+    //     "MaximumAge": 0,
+    //     "IsSpecialCase": false
+    // },
+    {
+        "HierarchyPosition": 2,
+        "DependentNumber": "2111059302",
+        "FirstName": "MOTHER",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Mother",
+        "Gender": "Female",
+        "CivilStatus": "Married",
+        "BirthDate": "1959/05/01",
+        "SubType": null,
+        "MaximumAge": 0,
+        "IsSpecialCase": false
+    }
+]
+
+var validDependents = [];
+
+validDependents = dependents.reduce((acc, cur, index) => {
+    //console.log(cur);
+    var chkHierarchyDeps = filterHMOenroll.some(dep => 
+        dep.Relationship.toLowerCase() === cur.Relationship.toLowerCase() && cur.DependentNumber === dep.DependentNumber)
+    console.log(cur,chkHierarchyDeps)
+    if (chkHierarchyDeps) {
+        var chkIndex = filterHMOenroll.findIndex(x => cur.DependentNumber === x.DependentNumber)
+        if (index === chkIndex){
+            console.log(chkIndex, index)
+            acc.push(true);
+        } else {
+            acc.push(false)
+        }
+    } else {
+        acc.push(false)
+    }
+    
+    
+
+    
+    //console.log(acc[index -1])
+
+    return acc
+}, [])
+
+var chkIfValid = validDependents.some(valid => valid === false)
+
+console.log(validDependents, chkIfValid)
+
+//check if chkIfValid has a false value
