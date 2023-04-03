@@ -36,34 +36,34 @@ const filterHMOenroll = [
 
 const dependents = [
    
-    {
-        "HierarchyPosition": 2,
-        "DependentNumber": "2111059201",
-        "FirstName": "FATHER",
-        "MiddleName": "",
-        "LastName": "COE",
-        "Relationship": "Father",
-        "Gender": "Male",
-        "CivilStatus": "Married",
-        "BirthDate": "1956/05/01",
-        "SubType": null,
-        "MaximumAge": 0,
-        "IsSpecialCase": false
-    },
-    //  {
-    //     "HierarchyPosition": 3,
-    //     "DependentNumber": "2111059901",
-    //     "FirstName": "HALF SIBLING",
+    // {
+    //     "HierarchyPosition": 2,
+    //     "DependentNumber": "2111059201",
+    //     "FirstName": "FATHER",
     //     "MiddleName": "",
     //     "LastName": "COE",
-    //     "Relationship": "Half Sibling",
-    //     "Gender": "Female",
-    //     "CivilStatus": "Single",
-    //     "BirthDate": "4/3/2001",
+    //     "Relationship": "Father",
+    //     "Gender": "Male",
+    //     "CivilStatus": "Married",
+    //     "BirthDate": "1956/05/01",
     //     "SubType": null,
     //     "MaximumAge": 0,
     //     "IsSpecialCase": false
     // },
+     {
+        "HierarchyPosition": 3,
+        "DependentNumber": "2111059901",
+        "FirstName": "HALF SIBLING",
+        "MiddleName": "",
+        "LastName": "COE",
+        "Relationship": "Half Sibling",
+        "Gender": "Female",
+        "CivilStatus": "Single",
+        "BirthDate": "4/3/2001",
+        "SubType": null,
+        "MaximumAge": 0,
+        "IsSpecialCase": false
+    },
     {
         "HierarchyPosition": 2,
         "DependentNumber": "2111059302",
@@ -77,20 +77,32 @@ const dependents = [
         "SubType": null,
         "MaximumAge": 0,
         "IsSpecialCase": false
-    }
+    },
 ]
 
 var validDependents = [];
 
-validDependents = dependents.reduce((acc, cur, index) => {
+  var sortedDeps =  dependents.sort((a, b) => a.HierarchyPosition - b.HierarchyPosition)
+
+  
+validDependents = sortedDeps.reduce((acc, cur, index) => {
     //console.log(cur);
     var chkHierarchyDeps = filterHMOenroll.some(dep => 
         dep.Relationship.toLowerCase() === cur.Relationship.toLowerCase() && cur.DependentNumber === dep.DependentNumber)
-    console.log(cur,chkHierarchyDeps)
+    //console.log(cur,chkHierarchyDeps)
     if (chkHierarchyDeps) {
-        var chkIndex = filterHMOenroll.findIndex(x => cur.DependentNumber === x.DependentNumber)
+        //3 variations
+        var chkIndex = filterHMOenroll.findIndex(x => cur.DependentNumber === x.DependentNumber && cur.HierarchyPosition === x.HierarchyPosition)
+        //var chkIndex = filterHMOenroll.map(x => { return x.HierarchyPosition}).indexOf(cur.HierarchyPosition)
+        // var chkIndex;
+        // var checker = filterHMOenroll.some(function(entry, i) {
+        //     if (entry.HierarchyPosition == cur.HierarchyPosition && cur.DependentNumber === entry.DependentNumber) {
+        //         chkIndex = i;
+        //         return i;
+        //     }
+        // });
+        console.log(chkIndex)
         if (index === chkIndex){
-            console.log(chkIndex, index)
             acc.push(true);
         } else {
             acc.push(false)
@@ -98,16 +110,11 @@ validDependents = dependents.reduce((acc, cur, index) => {
     } else {
         acc.push(false)
     }
-    
-    
-
-    
-    //console.log(acc[index -1])
-
+ 
     return acc
 }, [])
 
-var chkIfValid = validDependents.some(valid => valid === false)
+var chkIfValid = validDependents.some(valid => !valid)
 
 console.log(validDependents, chkIfValid)
 
