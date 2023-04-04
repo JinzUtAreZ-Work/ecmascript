@@ -1,11 +1,3 @@
-const sortedFlexBenefitsList = flexBenfitsList.sort((a, b) => {
-  if (a.ItemGroup === b.ItemGroup) {
-    return a.ItemSequence - b.ItemSequence;
-  } else {
-    return a.ItemGroup.localeCompare(b.ItemGroup);
-  }
-});
-
 const flexBenfitsList =[
     {
         "FileSystemObjectType": 0,
@@ -427,6 +419,25 @@ const flexBenEnroll = [
     },
     {
         "FileSystemObjectType": 0,
+        "Id": 2890,
+        "ContentTypeId": "0x010091D20FA45CBCC64D816BF871FD3658DC",
+        "Title": "Flex-211105-0256",
+        "t2k2": "Transpo Allowance 2",
+        "Amount": 0,
+        "EnrollmentStatus": "Pending",
+        "SAPEmployeeNumber": "211105",
+        "EnrollmentYear": "2023",
+        "ID": 288,
+        "Modified": "2023-04-04T09:21:06Z",
+        "Created": "2023-04-04T09:21:06Z",
+        "AuthorId": 3,
+        "EditorId": 3,
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "12db39e1-3369-4176-9a83-57c4c678ff6c"
+    },
+    {
+        "FileSystemObjectType": 0,
         "Id": 289,
         "ContentTypeId": "0x010091D20FA45CBCC64D816BF871FD3658DC",
         "Title": "Flex-211105-0257",
@@ -447,7 +458,7 @@ const flexBenEnroll = [
 ]
 
 const flexBen = [
-    {
+   {
         "FileSystemObjectType": 0,
         "Id": 13,
         "Title": "Transpo Allowance 3",
@@ -469,28 +480,28 @@ const flexBen = [
         "Attachments": false,
         "GUID": "a2459f0c-a528-4f57-8f2b-5b666f3a8129"
     },
-    // {
-    //     "FileSystemObjectType": 0,
-    //     "Id": 10,
-    //     "Title": "Transpo Allowance 2",
-    //     "ItemName": "Transpo Allowance 2",
-    //     "OData__x0073_fe4": 0,
-    //     "IsManagerial": false,
-    //     "ItemActive": true,
-    //     "ContentTypeId": "0x01004B470BF8D54C104F8FE4BF3B8CA45E29",
-    //     "Period": "February 2022",
-    //     "ManagerAmount": 5000,
-    //     "ItemGroup": "Transpo Allowance",
-    //     "ItemSequence": 2,
-    //     "ID": 10,
-    //     "Modified": "2023-04-04T04:58:38Z",
-    //     "Created": "2022-01-07T07:38:45Z",
-    //     "AuthorId": 141,
-    //     "EditorId": 3,
-    //     "OData__UIVersionString": "1.0",
-    //     "Attachments": false,
-    //     "GUID": "aa576e51-9471-48bf-8d28-fbb87d7062e9"
-    // },
+    {
+        "FileSystemObjectType": 0,
+        "Id": 10,
+        "Title": "Transpo Allowance 2",
+        "ItemName": "Transpo Allowance 2",
+        "OData__x0073_fe4": 0,
+        "IsManagerial": false,
+        "ItemActive": true,
+        "ContentTypeId": "0x01004B470BF8D54C104F8FE4BF3B8CA45E29",
+        "Period": "February 2022",
+        "ManagerAmount": 5000,
+        "ItemGroup": "Transpo Allowance",
+        "ItemSequence": 2,
+        "ID": 10,
+        "Modified": "2023-04-04T04:58:38Z",
+        "Created": "2022-01-07T07:38:45Z",
+        "AuthorId": 141,
+        "EditorId": 3,
+        "OData__UIVersionString": "1.0",
+        "Attachments": false,
+        "GUID": "aa576e51-9471-48bf-8d28-fbb87d7062e9"
+    },
     // {
     //     "FileSystemObjectType": 0,
     //     "Id": 9,
@@ -534,9 +545,124 @@ const flexBen = [
     //     "OData__UIVersionString": "1.0",
     //     "Attachments": false,
     //     "GUID": "8e1f65e8-d2ae-4f32-b8a5-04028c0eeb63"
-    // }
+    // },
 ]
 
+
+// flexBen.map((cur) => {
+//     const preItemFlexBen = flexBen.find(flexBen => cur.ItemName === flexBen.ItemName )
+//     const preItemFlexEBenEnroll = flexBenEnroll.find(flexBen1 => cur.ItemName === flexBen1.t2k2)
+//     preItemReq = (!preItemFlexBen && !preItemFlexEBenEnroll) ? false : true
+//     //console.log(preItemFlexBen, preItemFlexEBenEnroll, preItemReq);
+    
+// })
+
+
+var validBenefits = [];
+var sortedFlexBen =  flexBen.sort((a, b) => {
+    if (a.ItemGroup === b.ItemGroup) {
+      return a.ItemSequence - b.ItemSequence;
+    } else {
+      return a.ItemGroup.localeCompare(b.ItemGroup);
+    }
+  });
+//console.log(sortedFlexBen)
+
+var reqBenefits = [];  
+validBenefits = sortedFlexBen.reduce((acc, cur) => {
+    
+    var chkHierarchyFlex =  flexBenEnroll.some(dep => dep.t2k2.toLowerCase() === cur.ItemName.toLowerCase())
+    console.log(cur, chkHierarchyFlex)
+    if (!chkHierarchyFlex) { 
+        //var filterGroupSequence = flexBenfitsList.find(item => item.ItemName.toLowerCase() === cur.ItemName.toLowerCase())
+        
+        var filteredFlexBenefitsList = flexBenfitsList.filter(item => {
+            if (cur.ItemGroup === item.ItemGroup)
+            return flexBenEnroll.some(enrolledItem => enrolledItem.t2k2 === item.ItemName);
+          });
+          console.log("filtered",filteredFlexBenefitsList)
+        if(filteredFlexBenefitsList.length > 0){
+            
+            var max = filteredFlexBenefitsList.reduce((prev, current) => {
+                //console.log(cur.ItemGroup,current.ItemGroup)
+                return (prev.ItemSequence > current.ItemSequence) ? prev : current
+            }) //returns object
+            console.log("max", max.ItemSequence, cur.ItemSequence - 1)
+            max.ItemSequence === (cur.ItemSequence - 1) ? acc.push(true) : acc.push(false)
+        }
+        else {
+            reqBenefits.push({ItemGroup: cur.ItemGroup, ItemSequence: cur.ItemSequence})
+            //console.log(reqBenefits)
+           
+                //console.log(reqBenefits[0].ItemGroup, cur.ItemGroup)
+                if(reqBenefits[0].ItemGroup === cur.ItemGroup && reqBenefits.length > 1){
+                    (reqBenefits[0].ItemSequence === (cur.ItemSequence - 1)) ? acc.push(true) : acc.push(false)
+                    reqBenefits.shift()
+                }else {
+                    //console.log("check", reqBenefits[0].ItemSequence)
+                    if(reqBenefits[0].ItemSequence !== 1 && reqBenefits[0].ItemGroup === cur.ItemGroup){
+                        acc.push(false)
+                        reqBenefits.shift()
+                    }
+                    else {
+                        acc.push(true)
+                    }
+                    
+                }
+            
+        }
+
+    }
+    else {
+            acc.push(false)
+    }
+    // //console.log(cur);
+    // if(flexBenEnroll.length === 0){
+    //     (cur.ItemSequence === 1) ? acc.push(true) : acc.push(false)
+    //      return acc
+    // }
+
+    // var chkHierarchyFlex = flexBenEnroll.some(dep => dep.t2k2.toLowerCase() === cur.ItemName.toLowerCase())
+    // console.log(cur.ItemName, chkHierarchyFlex)
+    // if (!chkHierarchyFlex) {
+    //     var chkIndex;
+    //     flexBen.some(function(entry, i) {
+    //         //console.log(index,cur.ItemSequence,cur.ItemName,entry.ItemSequence, entry.ItemName)
+    //         if (entry.ItemName.toLowerCase() == cur.ItemName.toLowerCase()) {
+    //             var chkSequence = flexBenfitsList.find(x => x.ItemName.toLowerCase() === entry.ItemName.toLowerCase())
+    //             var chkGroup =  flexBenfitsList.filter(y => y.ItemGroup.toLowerCase() === cur.ItemGroup.toLowerCase())
+    //             var compareToGroup = flexBenEnroll
+    //             console.log(chkSequence, chkGroup)
+    //             chkIndex = i;
+    //         }
+    //         //console.log(chkIndex,index,i)
+    //     });
+    //     //console.log(index, chkIndex)
+    //     if (index === chkIndex){
+    //         acc.push(true);
+    //     } else {
+    //         acc.push(false)
+    //     }
+    // } else {
+    //     acc.push(false)
+    // }
+ 
+    return acc
+}, [])
+
+var chkIfValid = validBenefits.some(valid => !valid)
+
+console.log(validBenefits, chkIfValid)
+
+// Additional not included 
+const sortedFlexBenefitsList = flexBenfitsList.sort((a, b) => {
+  if (a.ItemGroup === b.ItemGroup) {
+    return a.ItemSequence - b.ItemSequence;
+  } else {
+    return a.ItemGroup.localeCompare(b.ItemGroup);
+  }
+});
+// Additional not included 
 const filteredFlexBenefitsList = flexBenfitsList.filter(item => {
   return flexBenEnroll.some(enrolledItem => enrolledItem.t2k2 === item.ItemName);
 });
