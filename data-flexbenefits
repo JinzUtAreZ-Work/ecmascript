@@ -1,3 +1,11 @@
+const sortedFlexBenefitsList = flexBenfitsList.sort((a, b) => {
+  if (a.ItemGroup === b.ItemGroup) {
+    return a.ItemSequence - b.ItemSequence;
+  } else {
+    return a.ItemGroup.localeCompare(b.ItemGroup);
+  }
+});
+
 const flexBenfitsList =[
     {
         "FileSystemObjectType": 0,
