@@ -528,3 +528,7 @@ const flexBen = [
     //     "GUID": "8e1f65e8-d2ae-4f32-b8a5-04028c0eeb63"
     // }
 ]
+
+const filteredFlexBenefitsList = flexBenfitsList.filter(item => {
+  return flexBenEnroll.some(enrolledItem => enrolledItem.t2k2 === item.ItemName);
+});
