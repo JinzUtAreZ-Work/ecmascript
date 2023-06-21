@@ -1,0 +1,184 @@
+let listViolation = [
+    {
+        "Offender": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1",
+            "Title": "OPEX Bills Approver 1 50k"
+        },
+        "ChangedBy": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1"
+        },
+        "FileSystemObjectType": 0,
+        "Id": 236,
+        "Title": "CODNTE-235-",
+        "OffenderId": 3733,
+        "Status": "Penalized",
+        "PenalizedDate": "2018-05-02T01:30:00Z",
+        "CodeOfConduct": "CCRCC2",
+        "Description": "Missed Assignment - Crew who fails to report for - flight/FR duty/ground duties or reports 16 minutes after the scheduled reporting time of his assignment.",
+        "SuspensionDays": "0",
+        "ChangedById": 3733,
+        "DateCommitted": "2023-06-08T16:00:00Z",
+        "SAPEmpNum": "200167",
+        "AsOfPoints": "6",
+        "ContentTypeId": "0x0100BA087153ADEE4945B41C131276F6E888",
+        "PenalizedPoints": 6,
+        "EmployeeStatus": "Regular",
+        "BusinessUnit": "5J00",
+        "ID": 236,
+        "Modified": "2023-06-13T11:21:39Z",
+        "Created": "2018-04-24T10:37:23Z",
+        "AuthorId": 1073741823,
+        "EditorId": 18,
+        "OData__UIVersionString": "5.0",
+        "Attachments": false,
+        "GUID": "596e8eec-1ce0-4e79-bb1b-da982223e664"
+    },
+    {
+        "Offender": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1",
+            "Title": "OPEX Bills Approver 1 50k"
+        },
+        "ChangedBy": {
+            "Name": "i:0#.w|cebupacificair\\opexbills2"
+        },
+        "FileSystemObjectType": 0,
+        "Id": 3542,
+        "Title": "CODNTE-3576",
+        "OffenderId": 3733,
+        "Status": "Penalized",
+        "PenalizedDate": null,
+        "CodeOfConduct": "CCPCC1",
+        "Description": "Tardiness/Late Reporting - Crew who reports for flight/FR duty/ground duties one minute after reporting\ntime until the 15th minute.",
+        "SuspensionDays": null,
+        "ChangedById": 3959,
+        "DateCommitted": "2023-06-08T16:00:00Z",
+        "SAPEmpNum": "200167",
+        "AsOfPoints": "4",
+        "ContentTypeId": "0x0100BA087153ADEE4945B41C131276F6E888",
+        "PenalizedPoints": null,
+        "EmployeeStatus": "Probationary",
+        "BusinessUnit": "5J00",
+        "ID": 3542,
+        "Modified": "2023-06-13T10:47:02Z",
+        "Created": "2023-05-24T06:25:36Z",
+        "AuthorId": 18,
+        "EditorId": 18,
+        "OData__UIVersionString": "4.0",
+        "Attachments": false,
+        "GUID": "443cc7bc-4970-4588-983e-8d32d73db2a1"
+    },
+    {
+        "Offender": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1",
+            "Title": "OPEX Bills Approver 1 50k"
+        },
+        "ChangedBy": {
+            "Name": "i:0#.w|cebupacificair\\opexrf"
+        },
+        "FileSystemObjectType": 0,
+        "Id": 3543,
+        "Title": "CODNTE-3577",
+        "OffenderId": 3733,
+        "Status": "Pending",
+        "PenalizedDate": null,
+        "CodeOfConduct": "CCRCC1",
+        "Description": "Tardiness/Late Reporting - Crew who reports for flight/FR duty/ground duties one minute after reporting time until the 15th minute",
+        "SuspensionDays": null,
+        "ChangedById": 3714,
+        "DateCommitted": "2023-06-08T16:00:00Z",
+        "SAPEmpNum": "200167",
+        "AsOfPoints": "1",
+        "ContentTypeId": "0x0100BA087153ADEE4945B41C131276F6E888",
+        "PenalizedPoints": null,
+        "EmployeeStatus": "Probationary",
+        "BusinessUnit": "5J00",
+        "ID": 3543,
+        "Modified": "2023-06-13T10:46:39Z",
+        "Created": "2023-05-24T06:25:42Z",
+        "AuthorId": 18,
+        "EditorId": 18,
+        "OData__UIVersionString": "2.0",
+        "Attachments": false,
+        "GUID": "d8a6f5ae-e353-49bf-a95d-d9007cfca5c9"
+    },
+    {
+        "Offender": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1",
+            "Title": "OPEX Bills Approver 1 50k"
+        },
+        "ChangedBy": {
+            "Name": "i:0#.w|cebupacificair\\opexbills1"
+        },
+        "FileSystemObjectType": 0,
+        "Id": 3743,
+        "Title": "CODNTE-235",
+        "OffenderId": 3733,
+        "Status": "Penalized",
+        "PenalizedDate": "2023-06-08T16:00:00Z",
+        "CodeOfConduct": "CCRCC1",
+        "Description": "Tardiness/Late Reporting - Crew who reports for flight/FR duty/ground duties one minute after reporting time until the 15th minute",
+        "SuspensionDays": "1",
+        "ChangedById": 3733,
+        "DateCommitted": "2023-06-08T16:00:00Z",
+        "SAPEmpNum": "200167",
+        "AsOfPoints": "20",
+        "ContentTypeId": "0x0100BA087153ADEE4945B41C131276F6E888",
+        "PenalizedPoints": 6,
+        "EmployeeStatus": "Regular",
+        "BusinessUnit": "5J00",
+        "ID": 3743,
+        "Modified": "2023-06-13T11:27:04Z",
+        "Created": "2023-06-13T01:48:26Z",
+        "AuthorId": 18,
+        "EditorId": 18,
+        "OData__UIVersionString": "9.0",
+        "Attachments": false,
+        "GUID": "a0de618e-b4e4-47b6-a8e1-b4324765ae0a"
+    }
+]
+  const groupBy = (array, key) => {
+    return array.reduce((result, currentValue) => {
+      (result[currentValue.CodeOfConduct] = result[currentValue.CodeOfConduct] || []).push(
+        currentValue
+      );
+      //console.log(result);
+      return result;
+    }, {}); // substitute [], {} apigee issues
+  };
+
+  const groupedByCode = groupBy(listViolation, "CodeOfConduct");
+  //console.log(groupedByCode)
+
+  var result = Object.keys(groupedByCode).map((key) => [key, groupedByCode[key]]);
+  console.log(result)
+
+
+// const person = [
+//     {
+//       name: "Jim",
+//       color: "blue",
+//       age: 22
+//     },
+//     {
+//       name: "Sam",
+//       color: "blue",
+//       age: 33
+//     },
+//     {
+//       name: "Eddie",
+//       color: "green",
+//       age: 77
+//     }
+//   ];
+  
+//   const groupBy = (array, key) => {
+//     return array.reduce((result, currentValue) => {
+//       (result[currentValue.color] = result[currentValue.color] || []).push(
+//         currentValue
+//       );
+//       console.log(result);
+//       return result;
+//     }, {});
+//   };
+  
+//   const personGroupedByColor = groupBy(person, "color");
