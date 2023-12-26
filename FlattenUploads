@@ -1,55 +1,374 @@
+var data = [
+        {
+            "_id": "658992bedab5f78ed6812e48",
+            "affiliation_id": "AFN001282",
+            "file_type": "bir-cor-2303",
+            "files": [
+                {
+                    "path": "170351481379198262823/Test-APE_PACKAGES - Copy.docx",
+                    "encoding": "7bit",
+                    "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "size": 11998
+                },
+                {
+                    "path": "1703514813800576182609/Test-APE_PACKAGES - Copy.jpg",
+                    "encoding": "7bit",
+                    "mimetype": "image/jpeg",
+                    "size": 350558
+                },
+                [
+                    {
+                        "path": "170351672034143005934/ShareCodeReview.png",
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 46821
+                    },
+                    {
+                        "path": "1703516720347643742159/VeridataWork.png",
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "6589918e07f8ff576c6e54f3",
+            "affiliation_id": "AFN001282",
+            "file_type": "business-permit",
+            "files": [
+                {
+                    "path": "1703514509905722699332/Test-APE_PACKAGES - Copy.pdf",
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                {
+                    "path": "1703514509907495301026/Test-APE_PACKAGES - Copy.xlsx",
+                    "encoding": "7bit",
+                    "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "size": 9912
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "65897f5407f8ff576c6e54af",
+            "affiliation_id": "AFN001282",
+            "file_type": "ECU-pages",
+            "files": [
+                {
+                    "path": "1703509844049398684562/Test-APE_PACKAGES - Copy.pdf",
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                [
+                    {
+                        "path": "1703509891455240703131/Test-APE_PACKAGES - Copy.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "size": 350558
+                    }
+                ],
+                [
+                    {
+                        "path": "1703514268196880091039/VeridataWork.png",
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "658974cb2f0ff953f1a33540",
+            "affiliation_id": "AFN001282",
+            "file_type": "APE-packages",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "size": 11998
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "size": 350558
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "testpath": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "658960dc2e5567649142b71a",
+            "affiliation_id": "AFN001282",
+            "file_type": "areas-in-facility",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "image/jpeg",
+                    "size": 350558
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 46821
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 46821
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "size": 11992
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "path": "C:\\HIMS\\Dev2Projects\\pn-api\\uploads\\1703509079031416227457\\Test-APE_PACKAGES - Copy.pd",
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "6588f620a89986e93230d974",
+            "affiliation_id": "AFN001282",
+            "file_type": "check-payable-letter",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "6588ed9d643623949285c099",
+            "affiliation_id": "AFN001282",
+            "file_type": "location-map",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "size": 9912
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "6588ddf306c8b2ea76d11ae2",
+            "affiliation_id": "AFN001282",
+            "file_type": "medical-directory",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "application/pdf",
+                    "size": 41198
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/pdf",
+                        "size": 41198
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "size": 11998
+                    }
+                ]
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "65853b9f92641a52b238240e",
+            "affiliation_id": "AFN001282",
+            "file_type": "accredited-doctors",
+            "files": [
+                {
+                    "encoding": "7bit",
+                    "mimetype": "text/plain",
+                    "size": 145
+                },
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 46821
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 635964
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 635964
+                    }
+                ],
+                [
+                    {
+                        "path": null,
+                        "encoding": "7bit",
+                        "mimetype": "image/png",
+                        "size": 321620
+                    }
+                ]
+            ],
+            "__v": 0
+        }
+    ]
+
+
+
 function flattenFilesArray(filesArray) {
-  const flattenedFiles = [];
+    const flattenedFiles = [];
+  
+    filesArray.forEach((file) => {
+      if (Array.isArray(file)) {
+        // If the element is an array, recursively flatten it
+        flattenedFiles.push(...flattenFilesArray(file));
+      } else {
+        // If the element is a file object, add it to the flattened array
+        flattenedFiles.push({
+          path: file.path,
+          encoding: file.encoding,
+          mimetype: file.mimetype,
+          size: file.size,
+        });
+      }
+    });
+  
+    return flattenedFiles;
+  }
 
-  filesArray.forEach((file) => {
-    if (Array.isArray(file)) {
-      // If the element is an array, recursively flatten it
-      flattenedFiles.push(...flattenFilesArray(file));
-    } else {
-      // If the element is a file object, add it to the flattened array
-      flattenedFiles.push({
-        path: file.path,
-        encoding: file.encoding,
-        mimetype: file.mimetype,
-        size: file.size,
-      });
-    }
-  });
+    const flattenedFilesArray = data.reduce((acc, cur) => {
+      acc.push({_id: cur._id,
+      affiliation_id: cur.affiliation_id,
+      file_type: cur.file_type,
+      files: flattenFilesArray(cur.files),
+      __v: cur.__v})
+      return acc
+    },[])
 
-  return flattenedFiles;
-}
-
-// Example array of files
-const filesArray = [
-  {
-    path: "170351481379198262823/Test-APE_PACKAGES - Copy.docx",
-    encoding: "7bit",
-    mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    size: 11998,
-  },
-  {
-    path: "1703514813800576182609/Test-APE_PACKAGES - Copy.jpg",
-    encoding: "7bit",
-    mimetype: "image/jpeg",
-    size: 350558,
-  },
-  [
-    {
-      path: "170351672034143005934/ShareCodeReview.png",
-      encoding: "7bit",
-      mimetype: "image/png",
-      size: 46821,
-    },
-    {
-      path: "1703516720347643742159/VeridataWork.png",
-      encoding: "7bit",
-      mimetype: "image/png",
-      size: 321620,
-    },
-  ],
-];
-
-// Flatten the array
-const flattenedFilesArray = flattenFilesArray(filesArray);
-
-console.log(flattenedFilesArray);
+    console.log(flattenedFilesArray)
