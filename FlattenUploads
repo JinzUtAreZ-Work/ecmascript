@@ -1,0 +1,55 @@
+function flattenFilesArray(filesArray) {
+  const flattenedFiles = [];
+
+  filesArray.forEach((file) => {
+    if (Array.isArray(file)) {
+      // If the element is an array, recursively flatten it
+      flattenedFiles.push(...flattenFilesArray(file));
+    } else {
+      // If the element is a file object, add it to the flattened array
+      flattenedFiles.push({
+        path: file.path,
+        encoding: file.encoding,
+        mimetype: file.mimetype,
+        size: file.size,
+      });
+    }
+  });
+
+  return flattenedFiles;
+}
+
+// Example array of files
+const filesArray = [
+  {
+    path: "170351481379198262823/Test-APE_PACKAGES - Copy.docx",
+    encoding: "7bit",
+    mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    size: 11998,
+  },
+  {
+    path: "1703514813800576182609/Test-APE_PACKAGES - Copy.jpg",
+    encoding: "7bit",
+    mimetype: "image/jpeg",
+    size: 350558,
+  },
+  [
+    {
+      path: "170351672034143005934/ShareCodeReview.png",
+      encoding: "7bit",
+      mimetype: "image/png",
+      size: 46821,
+    },
+    {
+      path: "1703516720347643742159/VeridataWork.png",
+      encoding: "7bit",
+      mimetype: "image/png",
+      size: 321620,
+    },
+  ],
+];
+
+// Flatten the array
+const flattenedFilesArray = flattenFilesArray(filesArray);
+
+console.log(flattenedFilesArray);
