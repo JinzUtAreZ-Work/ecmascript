@@ -1,0 +1,34 @@
+const formArrays = [
+    {
+        "Emergency": "total_for_the_company"
+    },
+    {
+        "Emergency": "total_for_the_company_1"
+    },
+    {
+        "Emergency": "total_for_the_company_2"
+    },
+    {
+        "Emergency1": "Subject"
+    },
+    {
+        "Emergency1": "Subject_1"
+    }
+];
+
+const formName = "Emergency";
+const selected_limit = "total_for_the_company_1";
+
+const key = {[`${formName}`]: `${selected_limit}`}
+
+
+const unique = formArrays.filter((obj, index) =>{
+    if(obj.hasOwnProperty([`${formName}`])){
+        console.log("yes, i have that property", obj);
+    }
+    else {
+       return obj;
+    }
+})
+unique.push(key)
+console.log(unique)
