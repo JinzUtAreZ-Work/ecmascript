@@ -1,0 +1,87 @@
+const path = "['company_wide_benefits']['company_shared_limit']['amount']";
+
+// Split the path by dot notation
+const arrays = path.split("']['").map(segment => segment.replace(/[\[\]']/g, ''));
+
+// Get the third value
+const thirdValue = arrays[2];
+
+const secondValue = arrays[1];
+
+console.log(secondValue);
+console.log(thirdValue);
+
+
+const checkCWB = {
+    "title": "Special Diagnostic",
+    "company_wide_benefits": {
+        "company_shared_limit": {
+            "amount": "321",
+            "amount_unit": "PHP",
+            "checked": true,
+            "disabled": false,
+            "select_limit": null,
+            "editCWBForm": [
+                {
+                    "Special Diagnostic": "subject_to_the_total_company_wide_limit"
+                }
+            ],
+            "cwbFormName": "Special Diagnostic",
+            "reset": {
+                "Emergency": false,
+                "Outpatient": true,
+                "APE": true,
+                "Inpatient": true,
+                "PPE": false,
+                "Special Diagnostic": false
+            },
+            "updateAmount": true
+        }
+    }
+}
+
+const metadata = {
+    "title": "Special Diagnostic",
+    "company_wide_benefits": {
+        "company_shared_limit": {
+            "amount": "31",
+            "amount_unit": "PHP",
+            "checked": true,
+            "disabled": false,
+            "select_limit": null,
+            "editCWBForm": [
+                {
+                    "Special Diagnostic": "subject_to_the_total_company_wide_limit"
+                }
+            ],
+            "cwbFormName": "Special Diagnostic",
+            "reset": {
+                "Emergency": false,
+                "Outpatient": true,
+                "APE": true,
+                "Inpatient": true,
+                "PPE": false,
+                "Special Diagnostic": false
+            },
+            "updateAmount": true
+        }
+    }
+}
+
+function compareJSONObjects(obj1, obj2) {
+    for (let key in obj1) {
+        if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+            if (!compareJSONObjects(obj1[key], obj2[key])) {
+                return false;
+            }
+        } else {
+            if (obj1[key] !== obj2[key]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// Example usage:
+console.log(compareJSONObjects(checkCWB, metadata));
