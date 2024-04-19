@@ -25,10 +25,10 @@ asar.extractAll(resourcesFolder + '\\app.asar', resourcesFolder + '\\src');
 
 //console.log('Deleting app.asar');
 
-log.dim("-----------------------------------");
-log.lightRed('Deleting app.asar');
+// log.dim("-----------------------------------");
+// log.lightRed('Deleting app.asar');
 
-fs.unlinkSync(resourcesFolder + '\\app.asar');
+//fs.unlinkSync(resourcesFolder + '\\app.asar');
 
 // Enter the directories to be ignored
 recursive(resourcesFolder + '\\src', ['node_modules', 'app'], function (err, files) {
@@ -42,8 +42,74 @@ recursive(resourcesFolder + '\\src', ['node_modules', 'app'], function (err, fil
 
             // Change the settings here  -  https://github.com/javascript-obfuscator/javascript-obfuscator
             const obfuscatedCode = javaScriptObfuscator.obfuscate(contents, {
+                /// BASIC ///
+                //compact: true,
+                //controlFlowFlattening: false,
+                /// BASIC ///
+
+
+                /// LOW ///
                 compact: true,
                 controlFlowFlattening: false,
+                deadCodeInjection: false,
+                debugProtection: false,
+                debugProtectionInterval: false,
+                disableConsoleOutput: true,
+                identifierNamesGenerator: 'hexadecimal',
+                log: false,
+                numbersToExpressions: false,
+                renameGlobals: false,
+                selfDefending: true,
+                simplify: true,
+                splitStrings: false,
+                stringArray: true,
+                stringArrayCallsTransform: false,
+                stringArrayEncoding: [],
+                stringArrayIndexShift: true,
+                stringArrayRotate: true,
+                stringArrayShuffle: true,
+                stringArrayWrappersCount: 1,
+                stringArrayWrappersChainedCalls: true,
+                stringArrayWrappersParametersMaxCount: 2,
+                stringArrayWrappersType: 'variable',
+                stringArrayThreshold: 0.75,
+                unicodeEscapeSequence: false
+                /// LOW ///
+
+
+                // /// Medium ///
+                // compact: true,
+                // controlFlowFlattening: true,
+                // controlFlowFlatteningThreshold: 0.75,
+                // deadCodeInjection: true,
+                // deadCodeInjectionThreshold: 0.4,
+                // debugProtection: false,
+                // debugProtectionInterval: false,
+                // disableConsoleOutput: true,
+                // identifierNamesGenerator: 'hexadecimal',
+                // log: false,
+                // numbersToExpressions: true,
+                // renameGlobals: false,
+                // selfDefending: true,
+                // simplify: true,
+                // splitStrings: true,
+                // splitStringsChunkLength: 10,
+                // stringArray: true,
+                // stringArrayCallsTransform: true,
+                // stringArrayCallsTransformThreshold: 0.75,
+                // stringArrayEncoding: ['base64'],
+                // stringArrayIndexShift: true,
+                // stringArrayRotate: true,
+                // stringArrayShuffle: true,
+                // stringArrayWrappersCount: 2,
+                // stringArrayWrappersChainedCalls: true,
+                // stringArrayWrappersParametersMaxCount: 4,
+                // stringArrayWrappersType: 'function',
+                // stringArrayThreshold: 0.75,
+                // transformObjectKeys: true,
+                // unicodeEscapeSequence: false
+
+                // /// Medium ///
             });
 
             fs.writeFileSync(file, obfuscatedCode.getObfuscatedCode());
@@ -82,6 +148,12 @@ recursive(resourcesFolder + '\\src', ['node_modules', 'app'], function (err, fil
             //fs.writeFileSync(file, ret);
         }
     });
+    
+    log.dim("-----------------------------------");
+    log.lightRed('Deleting app.asar');
+
+    fs.unlinkSync(resourcesFolder + '\\app.asar');
+
     //console.log('Packing asar archive');
     log.dim("-----------------------------------");
     log.lightGray('Packing asar archive');
