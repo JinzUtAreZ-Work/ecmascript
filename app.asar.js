@@ -10,12 +10,21 @@ var asar = require('asar');
 var javaScriptObfuscator = require('javascript-obfuscator');
 const log = require("ololog").configure({});
 
-// Set your resources folder
-var resourcesFolder = 'C:\\HIMS\\hims_app\\dist\\win-unpacked\\resources';
+function msToTime(s) {
+    var ms = s % 1000;
+    s = (s - ms) / 1000;
+    var secs = s % 60;
+    s = (s - secs) / 60;
+    var mins = s % 60;
+    var hrs = (s - mins) / 60;
+  
+    return hrs + ':' + mins + ':' + secs + '.' + ms;
+  }
 
-//console.log('\n\nasar package javascript obfuscator\n\n');
-// console.log('Unpacking archive');
-
+// Set your time duration, resources folder, and ignore folders
+const startTime = new Date().getTime();
+const resourcesFolder = 'C:\\HIMS\\hims_app\\dist\\win-unpacked\\resources';
+const toIgnore = ["node_modules", "app"];
 
 log.dim("-----------------------------------");
 log.lightGray('\n\nasar package javascript obfuscator\n\n');
@@ -23,58 +32,48 @@ log.lightGray('Unpacking archive');
 
 asar.extractAll(resourcesFolder + '\\app.asar', resourcesFolder + '\\src');
 
-//console.log('Deleting app.asar');
-
-// log.dim("-----------------------------------");
-// log.lightRed('Deleting app.asar');
-
-//fs.unlinkSync(resourcesFolder + '\\app.asar');
-
 // Enter the directories to be ignored
-recursive(resourcesFolder + '\\src', ['node_modules', 'app'], function (err, files) {
+recursive(resourcesFolder + '\\src', toIgnore, function (err, files) {
     files.forEach(file => {
         if (path.extname(file) === '.js') {
             let contents = fs.readFileSync(file, 'utf8');
-
-            //console.log('Protecting ' + file);
-            log.dim("-----------------------------------");
+            log.dim("----------------------------------------");
             log.lightGray('Protecting ' + file);
 
-            // Change the settings here  -  https://github.com/javascript-obfuscator/javascript-obfuscator
             const obfuscatedCode = javaScriptObfuscator.obfuscate(contents, {
-                /// BASIC ///
-                //compact: true,
-                //controlFlowFlattening: false,
-                /// BASIC ///
+                // /// BASIC ///
+                // compact: true,
+                // controlFlowFlattening: false,
+                // /// BASIC ///
 
 
-                /// LOW ///
-                compact: true,
-                controlFlowFlattening: false,
-                deadCodeInjection: false,
-                debugProtection: false,
-                debugProtectionInterval: false,
-                disableConsoleOutput: true,
-                identifierNamesGenerator: 'hexadecimal',
-                log: false,
-                numbersToExpressions: false,
-                renameGlobals: false,
-                selfDefending: true,
-                simplify: true,
-                splitStrings: false,
-                stringArray: true,
-                stringArrayCallsTransform: false,
-                stringArrayEncoding: [],
-                stringArrayIndexShift: true,
-                stringArrayRotate: true,
-                stringArrayShuffle: true,
-                stringArrayWrappersCount: 1,
-                stringArrayWrappersChainedCalls: true,
-                stringArrayWrappersParametersMaxCount: 2,
-                stringArrayWrappersType: 'variable',
-                stringArrayThreshold: 0.75,
-                unicodeEscapeSequence: false
-                /// LOW ///
+                // /// LOW ///
+                // compact: true,
+                // controlFlowFlattening: false,
+                // deadCodeInjection: false,
+                // debugProtection: false,
+                // debugProtectionInterval: false,
+                // disableConsoleOutput: true,
+                // identifierNamesGenerator: 'hexadecimal',
+                // log: false,
+                // numbersToExpressions: false,
+                // renameGlobals: false,
+                // selfDefending: true,
+                // simplify: true,
+                // splitStrings: false,
+                // stringArray: true,
+                // stringArrayCallsTransform: false,
+                // stringArrayEncoding: [],
+                // stringArrayIndexShift: true,
+                // stringArrayRotate: true,
+                // stringArrayShuffle: true,
+                // stringArrayWrappersCount: 1,
+                // stringArrayWrappersChainedCalls: true,
+                // stringArrayWrappersParametersMaxCount: 2,
+                // stringArrayWrappersType: 'variable',
+                // stringArrayThreshold: 0.75,
+                // unicodeEscapeSequence: false
+                // /// LOW ///
 
 
                 // /// Medium ///
@@ -113,61 +112,39 @@ recursive(resourcesFolder + '\\src', ['node_modules', 'app'], function (err, fil
             });
 
             fs.writeFileSync(file, obfuscatedCode.getObfuscatedCode());
-
-            // let ret = javaScriptObfuscator.obfuscate(contents, {
-            //     compact: true
-            //     , controlFlowFlattening: false
-            //     , controlFlowFlatteningThreshold: 0.75
-            //     , deadCodeInjection: false
-            //     , deadCodeInjectionThreshold: 0.4
-            //     , debugProtection: false
-            //     , debugProtectionInterval: false
-            //     , disableConsoleOutput: false
-            //     , domainLock: []
-            //     , identifierNamesGenerator: 'hexadecimal'
-            //     , identifiersPrefix: ''
-            //     , inputFileName: ''
-            //     , log: false
-            //     , renameGlobals: false
-            //     , reservedNames: []
-            //     , reservedStrings: []
-            //     , rotateStringArray: true
-            //     , seed: 0
-            //     , selfDefending: false
-            //     , sourceMap: false
-            //     , sourceMapBaseUrl: ''
-            //     , sourceMapFileName: ''
-            //     , sourceMapMode: 'separate'
-            //     , stringArray: true
-            //     , stringArrayEncoding: ['base64']
-            //     , stringArrayThreshold: 0.75
-            //     , target: 'node'
-            //     , transformObjectKeys: false
-            //     , unicodeEscapeSequence: false
-            // });
-            //fs.writeFileSync(file, ret);
         }
     });
     
-    log.dim("-----------------------------------");
+    log.dim("----------------------------------------");
     log.lightRed('Deleting app.asar');
 
     fs.unlinkSync(resourcesFolder + '\\app.asar');
-
-    //console.log('Packing asar archive');
-    log.dim("-----------------------------------");
+    log.dim("----------------------------------------");
     log.lightGray('Packing asar archive');
-
+    
     asar.createPackage(resourcesFolder + '\\src', resourcesFolder + '\\app.asar', (callback) => {
-        // console.log('Created secure asar archive');
-        // console.log('Deleting src directory');
-        log.dim("-----------------------------------");
-        log.lightRed('Created secure asar archive');
-        log.lightRed('Deleting src directory');
+    }).then(()=> {
+            if (err) {
+                throw err;
+              }
+            
+            log.lightGray('Created new secure asar archive');
+            log.dim("-----------------------------------");
+            log.lightRed('Deleting src directory');
+            console.log('Reminders --- uncomment the code below to see the contents of the src file')
+          
+            //// delete src file ///
+            rimraf(resourcesFolder + '\\src', function () {
+                 if (err) {
+                       throw err;
+               }
+               log.dim("--------------- Done! Have fun. --------------------");
+           });
+           //// delete src file ///
+    })
 
-        rimraf(resourcesFolder + '\\src', function () {
-            //console.log('Done! Have fun.');
-            log.dim("--------------- Done! Have fun. --------------------");
-        });
-    });
+    const endTime = new Date().getTime();
+    const durationTime = endTime-startTime
+    console.log('Time elapsed in securing files', msToTime(durationTime))
 });
+
