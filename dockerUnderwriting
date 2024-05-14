@@ -1,0 +1,126 @@
+Docker docs
+
+Docker setup commands
+
+Underwriting Docker setup
+
+docker load -i hims-draft.tar
+docker ps -a     ----> find id of the .tar file
+
+--- use this using powershell
+docker exec -it <id> /bin/bash 
+docker run -p 3000:3000 -p 4101:4101 hims-draft /bin/bash -c "sleep infinity"
+
+ssh-keygen -t rsa -b 2048
+copy generated sshkey to gitlab
+/root/.ssh/mathew_rsa
+cat /root/.ssh/mathew_rsa.pub
+
+mkdir devprojects
+git clone -b integ/update-package.json-20231219 git@gitlab.veridata.com.ph:hims-frontend/client/underwriting/underwriting-frontend.git underwriting
+cd underwriting/@hims
+git clone -b master git@gitlab.veridata.com.ph:hims-backend/client/client_api-sdk-javascript.git api
+git clone -b staging-dev2 git@gitlab.veridata.com.ph:hims-frontend/client/core-frontend.git core
+cd ../..
+cd underwriting
+cd @hims/core/
+yarn install
+
+cd ../api
+yarn install
+pwd
+cd ../..
+cd to underwriting
+
+yarn workspace @hims/api build
+yarn workspace @hims/core build
+
+vi .env
+
+press i
+
+REACT_APP_BASE_URL=https://api-dev.hims2.veridata.com.ph/api/
+REACT_APP_PMAKER_BASE_URL=https://pm-dev.hims2.veridata.com.ph/api/1.0/workflow/
+REACT_APP_PMAKER_ROOT_URL=https://pm-dev.hims2.veridata.com.ph/api/workflow/
+REACT_APP_RENDER_CONTRACT_BASE_URL=http%3A%2F%2Fhims-api-dev.veridata.com.ph%3A4101%2Fapi%2F
+node_options=--max_old_space_size=16384
+
+
+:wq --> esc 
+cat .env  --> to check .env
+
+run vscode
+install dev containers extension
+click the lower left icon  >< (Open a remote window)
+select  "Add to running container"
+press control ~ to show terminal
+must be in root folder # to proceed below
+
+BROWSER=none node_modules/.bin/react-scripts start   ----- run underwriting locally
+
+
+--Deploy Build in Docker locally-
+"build": "yarn react-scripts && yarn electron-build -w", --- old config 
+
+"build": "node_modules/.bin/react-scripts --max-old-space-size=8192 build",  --- build und in local
+
+npx electron-builder --win --prepackaged dist/win-unpacked    --- publish exe
+
+docker ps -a
+
+ls - check files
+pwd folder location
+
+docker cp <container_id>:/path/to/container/file /path/on/host
+docker cp 2d4d5eaa7b3d:/devprojects/underwriting/build ./   --- copy build files in docker
+
+-- end of Deploy Build in Docker locally
+
+rm -rf underwriting ---> delete
+
+
+Client api Docker Setup
+
+Cloning And Build 
+ - git clone -b upgrade-client-dev git@gitlab.veridata.com.ph:hims-backend/client/client_api.git client_api
+ - cd client_api
+ - mkdir -p tmp
+ - mkdir -p dist/components
+ - mkdir -p public/{profile-pictures,uploads/{clients,customer-care,documents,members,tmp,user-management}}
+ - yarn install --ignore-engines
+ - yarn build
+ - yarn pack
+ - tar -xzf hims-api-v1.0.7.tgz
+ - mv package ../client-deploy-api
+ - cd ../client-deploy-api
+ - yarn install
+ - cd node_modules
+ - ln -s ../dist/components/ @hims
+
+CONFIGURATION:
+Add .env file to client-deploy-api folder
+ use vi or nano to add/edit .env file
+ .env should have this variables
+
+vi .env
+press i
+ 
+NODE_CONFIG_DIR=./config/
+NODE_ENV=dev
+PORT=4101
+NODE_OPTIONS=--max_old_space_size=8192configure config/dev.yml
+
+press esc 
+:wq
+
+check if it works
+cat .env
+
+mv /lib64/libstdc++.so.6 /lib64/libstdc++.so.6.bak
+ln -s /usr/local/lib64/libstdc++.so.6.0.24 /lib64/libstdc++.so.6
+
+Run in client-deploy-api:
+ - env $(cat .env | xargs) PATH=$PATH:pwd/../node_modules/.bin/ node ./index.js
+ 
+ 
+January 10, 2024
