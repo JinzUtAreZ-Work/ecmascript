@@ -49,3 +49,111 @@ const pivoted = Object.entries(differences).reduce(
 
 
 console.log(pivoted);
+
+
+typescript 
+
+interface DataItem {
+  _id: string;
+  delete_dt: Date | undefined;
+  client_id: string;
+  agent_type: string;
+  agent_code: string;
+  main_agent: boolean;
+  agent_name: string;
+  commission_type: string;
+  commission_rate: number;
+  commission_amt: number;
+  net_of_tax: boolean;
+  naf: number;
+  admin_fee: number;
+  fix_comm: number;
+}
+
+interface UpdateItem {
+  client_id: string;
+  agent_type: string;
+  agent_code: string;
+  main_agent: boolean;
+  agent_name: string;
+  commission_type: string;
+  commission_rate: number;
+  commission_amt: number;
+  net_of_tax: boolean;
+  naf: number;
+  admin_fee: number;
+  fix_comm: number;
+}
+
+interface Difference {
+  data: any;
+  update: any;
+}
+
+interface Pivoted {
+  old: Record<string, any>;
+  new: Record<string, any>;
+}
+
+const data: DataItem[] = [
+  {
+    _id: '674ecbe9b9326276540fbc2f',
+    delete_dt: undefined,
+    client_id: '6715ffe9f227a041908e85e0',
+    agent_type: 'Agent',
+    agent_code: 'TEST AGENT',
+    main_agent: false,
+    agent_name: 'TEST DATE EDIT PRINCIPAL 20241021 - A',
+    commission_type: 'HMO',
+    commission_rate: 1,
+    commission_amt: 2,
+    net_of_tax: true,
+    naf: 3,
+    admin_fee: 4,
+    fix_comm: 5
+  }
+];
+
+const update: UpdateItem = {
+  client_id: '6715ffe9f227a041908e85e0',
+  agent_type: 'Agent',
+  agent_code: 'TEST AGENT - 1',
+  main_agent: false,
+  agent_name: 'TEST DATE EDIT PRINCIPAL 20241021 - AB',
+  commission_type: 'HMO',
+  commission_rate: 1,
+  commission_amt: 2,
+  net_of_tax: true,
+  naf: 3,
+  admin_fee: 4,
+  fix_comm: 5
+};
+
+const dataItem = data[0]; // Assuming we're comparing the first item in the array
+const differences: Record<string, Difference> = {};
+
+Object.keys(update).forEach(key => {
+  if (dataItem[key as keyof DataItem] !== update[key as keyof UpdateItem]) {
+    differences[key] = {
+      data: dataItem[key as keyof DataItem],
+      update: update[key as keyof UpdateItem]
+    };
+  }
+});
+
+console.log(differences);
+
+// Pivot the values
+const pivoted: Pivoted = Object.entries(differences).reduce(
+  (acc, [key, { data, update }]) => {
+    acc.old[key] = data;
+    acc.new[key] = update;
+    return acc;
+  },
+  { old: {}, new: {} }
+);
+
+console.log(pivoted);
+
+console.log(pivoted['old']);
+
