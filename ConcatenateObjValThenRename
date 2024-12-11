@@ -1,0 +1,31 @@
+convert the data including object and value, to a comma concatenated one line string using javascript, also rename the object properties capitalize the first letter and replace the _ character to a space
+
+const data = {
+    "_id": "6759436874e28e6a880dc346",
+    "client_id": "67563fa34020f63724407f60",
+    "agent_type": "Agent",
+    "agent_code": "TEST SC 1",
+    "main_agent": false,
+    "agent_name": "12092024 TEST EDIT R&B TABS HYBRID - A",
+    "commission_type": "HMO",
+    "commission_rate": 10,
+    "commission_amt": 11,
+    "net_of_tax": true,
+    "naf": 12,
+    "admin_fee": 13,
+    "fix_comm": 14
+};
+
+const result = Object.entries(data)
+    .filter(([key]) => key !== '_id' && key !== 'client_id')
+    .map(([key, value]) => 
+    {
+        const formattedKey = key
+            .replace(/_/g, ' ')  // Replace underscores with spaces
+            .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+        return `${formattedKey}: ${value}`;
+    })
+    .join(', ');
+
+
+console.log(result);
