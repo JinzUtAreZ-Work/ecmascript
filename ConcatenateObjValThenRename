@@ -30,3 +30,57 @@ const result = Object.entries(data)
 
 
 console.log(result);
+
+// arrays
+
+const data = [
+    {
+      _id: '675fba833eaba61de826f274',
+      delete_dt: undefined,
+      client_id: '675e9028c8552617083bc86e',
+      commission_type: '2nd Layer',
+      agent_name: 'TEST SALES NAME 1',
+      rate: 1,
+      amount: 2,
+      remarks: '3'
+    },
+    {
+      _id: '675fba833eaba61de826f2755',
+      delete_dt: 1,
+      client_id: '675e9028c8552617083bc86e111',
+      commission_type: '2nd Layer 1',
+      agent_name: 'TEST SALES NAME 1 1',
+      rate: 11,
+      amount: 21,
+      remarks: '31'
+    },
+  ];
+  
+  // Function to capitalize the first letter of each word
+  const capitalizeWords = (str) =>
+    str.replace(/\b\w/g, (char) => char.toUpperCase());
+  
+  // Transform the data
+  const transformedData = data.map(obj => {
+    return Object.entries(obj).map(([key, value]) => {
+      if (['_id', 'delete_dt', 'client_id'].indexOf(key) !== -1) return;
+      // Replace underscores with spaces and capitalize each word
+      let formattedKey = key.replace(/_/g, ' ') // Replace underscores with spaces
+      .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize first letter of each word
+
+
+      // or 
+      // const formattedKey = capitalizeWords(key.replace(/_/g, ' '));
+      
+      // Convert key and value into a single string
+   
+      if (formattedKey === 'Agent Name') {
+        formattedKey = 'Salesperson Name'
+      }
+      return `${formattedKey}: ${value !== undefined ? value : 'null'}`;
+    }).filter(Boolean).join(', ');
+  });
+  
+  console.log(transformedData);
+  
+
