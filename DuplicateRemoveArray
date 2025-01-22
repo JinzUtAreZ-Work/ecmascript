@@ -1,0 +1,11 @@
+const contractTypePlanValid = ['INP', 'APE', 'APE'];
+
+const chkDuplicateContractType = () => {
+  return contractTypePlanValid.reduce((a, b) => {
+    if (a.indexOf(b) < 0) a.push(b);
+    return a;
+  }, []);
+};
+
+const uniqueContracts = chkDuplicateContractType();
+console.log(uniqueContracts);
