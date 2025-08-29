@@ -1,5 +1,10 @@
+# List images
+docker images
 
-check backup
+# Save all images to a tarball
+docker save $(docker images -q) -o all-docker-images.tar
+
+# list containers
 docker ps -a
 
 CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS                       PORTS     NAMES
