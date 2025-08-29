@@ -1,1 +1,16 @@
 
+check backup
+docker ps -a
+
+CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS                       PORTS     NAMES
+7b41a93c06f3   769453be7412   "/bin/bash -c 'sleep…"   3 months ago   Exited (137) 8 minutes ago             rhel
+
+backup by container id
+docker export 7b41a93c06f3 -o client-api-backup.tar
+
+check .tar file
+ls -lh *.tar
+
+-rw-r--r-- 1 vni-mathew 197121 217M Aug 29 09:09 client-api-2024.tar
+-rw-r--r-- 1 vni-mathew 197121 5.0G Aug 29 09:26 client-api-backup.tar
+
